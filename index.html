@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TS3明細</title>
+</head>
+
+<body>
+    <button onclick="onClickCallGetTSPayAccessToken()">Call getTSPayAccessToken</button>
+    <textarea id="id_result" cols="30" rows="10"></textarea>
+</body>
+
+<script>
+    /**
+     * Android/iOS 共通
+     */
+    function getTSPayAccessToken() {
+        if (window.android == null) {
+            // for Android
+            reflectResult(window.android.getTSPayAccessToken())
+        } else {
+            // for iOS
+            window.webkit.messageHandlers.getTSPayAccessToken.postMessage()
+        }
+    }
+
+    /**
+     * for iOS
+     */
+    function getTSPayAccessTokenCallback(accessToken) {
+        reflectResult(accessToken)
+    }
+
+    /**
+     * クリックイベント
+     */
+    function onClickCallGetTSPayAccessToken() {
+        // 実装検知
+        if (window.android == null ||
+            window.android.getTSPayAccessToken == null
+        ) {
+            if (window.webkit == null ||
+                window.webkit.messageHandlers == null ||
+                window.webkit.messageHandlers.getTSPayAccessToken == null
+            ) {
+                reflectResult("getTSPayAccessToken メソッドが正しく実装されてません")
+                return
+            }
+        }
+
+        getTSPayAccessToken()
+    }
+
+    /**
+     * 画面への反映
+     */
+    function reflectResult(value) {
+        const idResult = document.getElementById("id_result")
+
+        if (value == null || value.length === 0) {
+            idResult.value = '取得した値が空("")でした'
+        } else {
+            idResult.value = value
+        }
+    }
+</script>
+
+</html>
