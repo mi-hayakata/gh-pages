@@ -17,7 +17,7 @@
      * Android/iOS 共通
      */
     function getTSPayAccessToken() {
-        if (window.android == null) {
+        if (window.android != null) {
             // for Android
             reflectResult(window.android.getTSPayAccessToken())
         } else {
