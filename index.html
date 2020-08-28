@@ -8,74 +8,47 @@
 </head>
 
 <body>
-    <button onclick="onClickCallGetTSPayAccessToken()">Call getTSPayAccessToken</button>
-    <textarea id="id_result" cols="30" rows="10"></textarea>
-
-    <input value="url" type="url">
-    <input value="email" type="email">
-    <input value="password" type="password">
-    <input value="09" type="text" pattern="0-9" >
+    <button onclick="onClickCallCloseMiniApp()">Call closeMiniApp</button>
 </body>
 
 <script>
     /**
      * Android/iOS 共通
      */
-    function getTSPayAccessToken() {
-        console.log("called getTSPayAccessToken")
-        console.log(window.android != null)
+    function closeMiniApp() {
+        console.log("called closeMiniApp")
+        const isAndroid = window.android != null
+        console.log("isAndroid?: " + isAndroid)
 
-        if (window.android != null) {
+        if (isAndroid) {
             // for Android
-            reflectResult(window.android.getTSPayAccessToken())
+            reflectResult(window.android.closeMiniApp())
         } else {
             // for iOS
-            window.webkit.messageHandlers.getTSPayAccessToken.postMessage()
+            window.webkit.messageHandlers.closeMiniApp.postMessage()
         }
-    }
-
-    /**
-     * for iOS
-     */
-    function getTSPayAccessTokenCallback(accessToken) {
-        reflectResult(accessToken)
     }
 
     /**
      * クリックイベント
      */
-    function onClickCallGetTSPayAccessToken() {
-        console.log("called onClickCallGetTSPayAccessToken")
+    function onClickCallCloseMiniApp() {
+        console.log("called onClickCallCloseMiniApp")
 
         // 実装検知
         if (window.android == null ||
-            window.android.getTSPayAccessToken == null
+            window.android.closeMiniApp == null
         ) {
             if (window.webkit == null ||
                 window.webkit.messageHandlers == null ||
-                window.webkit.messageHandlers.getTSPayAccessToken == null
+                window.webkit.messageHandlers.closeMiniApp == null
             ) {
-                reflectResult("getTSPayAccessToken メソッドが正しく実装されてません")
+                console.log("closeMiniApp メソッドが正しく実装されてません")
                 return
             }
         }
 
-        getTSPayAccessToken()
-    }
-
-    /**
-     * 画面への反映
-     */
-    function reflectResult(value) {
-        console.log("called reflectResult")
-
-        const idResult = document.getElementById("id_result")
-
-        if (value == null || value.length === 0) {
-            idResult.value = '取得した値が空("")でした'
-        } else {
-            idResult.value = value
-        }
+        closeMiniApp()
     }
 </script>
 

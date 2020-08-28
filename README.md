@@ -8,6 +8,6 @@ open http://localhost:8000
 # https 起動
 
 ```s
-python3 sever.py
+python3 server.py
 open https://localhost:8000
 ```
