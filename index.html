@@ -22,10 +22,10 @@
 
         if (isAndroid) {
             // for Android
-            reflectResult(window.android.closeMiniApp())
+            window.android.closeMiniApp()
         } else {
             // for iOS
-            window.webkit.messageHandlers.closeMiniApp.postMessage()
+            window.webkit.messageHandlers.closeMiniApp.postMessage("")
         }
     }
 
