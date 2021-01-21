@@ -8,48 +8,66 @@
 </head>
 
 <body>
-    <button onclick="onClickCallCloseMiniApp()">Call closeMiniApp</button>
+    <textarea id="id_result" style="width: 100%; height: 80vh;"></textarea>
 </body>
 
 <script>
-    /**
-     * Android/iOS 共通
-     */
-    function closeMiniApp() {
-        console.log("called closeMiniApp")
-        const isAndroid = window.android != null
-        console.log("isAndroid?: " + isAndroid)
+    const stringify = (x) => {
+        return JSON.stringify(x, (k, v) => {
+            if (typeof v === "function") { return v.toString() };
+            return v;
+        })
+    }
 
-        if (isAndroid) {
-            // for Android
-            window.android.closeMiniApp()
+    const append = (l, r) => {
+        return `${l}
+----
+${r}`
+    }
+
+    const checkConsoleObj = () => {
+        /** @type {HTMLTextAreaElement} */
+        const t = document.getElementById("id_result")
+        if (console == null) {
+            t.value = append(t.value, "console == null")
         } else {
-            // for iOS
-            window.webkit.messageHandlers.closeMiniApp.postMessage("")
+            t.value = append(t.value, stringify(console))
         }
     }
 
-    /**
-     * クリックイベント
-     */
-    function onClickCallCloseMiniApp() {
-        console.log("called onClickCallCloseMiniApp")
+    const checkOverrideWarn = () => {
+        /** @type {HTMLTextAreaElement} */
+        const t = document.getElementById("id_result")
+        try {
+            console.warn = console.log
+            console.warn("Run warn")
+            t.value = append(t.value, "checkOverrideWarn: OK")
+        } catch (error) {
+            t.value = append(t.value, error.toString())
+        }
+    }
 
-        // 実装検知
-        if (window.android == null ||
-            window.android.closeMiniApp == null
-        ) {
-            if (window.webkit == null ||
-                window.webkit.messageHandlers == null ||
-                window.webkit.messageHandlers.closeMiniApp == null
-            ) {
-                console.log("closeMiniApp メソッドが正しく実装されてません")
-                return
+
+    const checkOverrideConsole = () => {
+        /** @type {HTMLTextAreaElement} */
+        const t = document.getElementById("id_result")
+        try {
+            window.console = {
+                log: () => {},
+                warn: () => {},
+                error: () => {},
             }
+            window.console.warn("window.console.warn override")
+            t.value = append(t.value, "checkOverrideConsole: OK")
+        } catch (error) {
+            t.value = append(t.value, error.toString())
         }
-
-        closeMiniApp()
     }
+
+    checkConsoleObj()
+    checkOverrideWarn()
+    checkOverrideConsole()
+    checkConsoleObj()
 </script>
 
 </html>
