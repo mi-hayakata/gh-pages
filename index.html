@@ -8,6 +8,7 @@
 </head>
 
 <body>
+    <button onclick="onCheck()">check</button>
     <textarea id="id_result" style="width: 100%; height: 80vh;"></textarea>
 </body>
 
@@ -21,43 +22,18 @@
 
     const append = (l, r) => {
         return `${l}
-----
 ${r}`
     }
 
-    const checkConsoleObj = () => {
-        /** @type {HTMLTextAreaElement} */
-        const t = document.getElementById("id_result")
-        if (console == null) {
-            t.value = append(t.value, "console == null")
-        } else {
-            t.value = append(t.value, stringify(console))
-        }
-    }
-
-    const checkOverrideWarn = () => {
+    const onCheck = () => {
         /** @type {HTMLTextAreaElement} */
         const t = document.getElementById("id_result")
 
-        try {
-            const typer = typeof console.warn
-            t.value = append(t.value, "typeof console.warn: " + typer)
-        } catch (error) {
-            t.value = append(t.value, "type check: NG")
-            t.value = append(t.value, error.toString())
-        }
-
-        try {
-            console.warn("Run native warn")
-            t.value = append(t.value, "Run native warn: OK")
-        } catch (error) {
-            t.value = append(t.value, "Run native warn: NG")
-            t.value = append(t.value, error.toString())
-        }
+        console.log(window.navigator.onLine);
+        t.value = append(t.value, `window.navigator.onLine = ${window.navigator.onLine}`)
     }
 
-    checkConsoleObj()
-    checkOverrideWarn()
+    onCheck()
 </script>
 
 </html>
