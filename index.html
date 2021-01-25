@@ -38,36 +38,26 @@ ${r}`
     const checkOverrideWarn = () => {
         /** @type {HTMLTextAreaElement} */
         const t = document.getElementById("id_result")
+
         try {
-            console.warn = console.log
-            console.warn("Run warn")
-            t.value = append(t.value, "checkOverrideWarn: OK")
+            const typer = typeof console.warn
+            t.value = append(t.value, "typeof console.warn: " + typer)
         } catch (error) {
+            t.value = append(t.value, "type check: NG")
             t.value = append(t.value, error.toString())
         }
-    }
 
-
-    const checkOverrideConsole = () => {
-        /** @type {HTMLTextAreaElement} */
-        const t = document.getElementById("id_result")
         try {
-            window.console = {
-                log: () => {},
-                warn: () => {},
-                error: () => {},
-            }
-            window.console.warn("window.console.warn override")
-            t.value = append(t.value, "checkOverrideConsole: OK")
+            console.warn("Run native warn")
+            t.value = append(t.value, "Run native warn: OK")
         } catch (error) {
+            t.value = append(t.value, "Run native warn: NG")
             t.value = append(t.value, error.toString())
         }
     }
 
     checkConsoleObj()
     checkOverrideWarn()
-    checkOverrideConsole()
-    checkConsoleObj()
 </script>
 
 </html>
