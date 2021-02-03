@@ -8,28 +8,42 @@
 </head>
 
 <body>
+    <h3>「【TS3明細】（ST）httpリンクで、WebViewからネイティブブラウザを表示できない」動作確認用</h3>
     <div>
-        <h2>テスト1</h2>
+        <h4>テスト1</h4>
         <a href="https://www.yahoo.co.jp/" target="_blank" rel="noopener noreferrer">
             Yahoo!
         </a>
     </div>
     <div>
-        <h2>テスト2</h2>
+        <h4>テスト2</h4>
         <a href="javascript:window.open('https://www.google.com')">
             Google
         </a>
     </div>
     <div>
-        <h2>テスト Android Native連携</h2>
+        <h4>テスト Android Native連携</h4>
         <a href="javascript:wvt.callBrowser('https://example.com/')">
             example.com
         </a>
     </div>
+
+    <hr>
+
+    <h3>「【TS3明細】（ST）ヘッダーのタイトルが変更できない」動作確認用</h3>
+    <div>
+        <div>
+            <button onclick="changeTitle()">タイトル変更テスト</button>
+        </div>
+    </div>
+
 </body>
 
 <script>
-    // NOP
+    const changeTitle = () => {
+        const d = new Date()
+        document.title = d.toLocaleTimeString() + "." + d.getMilliseconds()
+    }
 </script>
 
 </html>
