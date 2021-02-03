@@ -5,35 +5,34 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TS3明細</title>
+    <style>
+        .link {
+            color: -webkit-link;
+            cursor: pointer;
+            text-decoration: underline;
+        }
+    </style>
 </head>
 
 <body>
-    <button onclick="onCheck()">check</button>
-    <textarea id="id_result" style="width: 100%; height: 80vh;"></textarea>
+    <div>
+        <h2>テスト1</h2>
+        <a href="https://www.yahoo.co.jp/" target="_blank" rel="noopener noreferrer">
+            Yahoo!
+        </a>
+    </div>
+    <div>
+        <h2>テスト2</h2>
+        <a class="link" onclick="call('https://www.google.com')">
+            Google
+        </a>
+    </div>
 </body>
 
 <script>
-    const stringify = (x) => {
-        return JSON.stringify(x, (k, v) => {
-            if (typeof v === "function") { return v.toString() };
-            return v;
-        })
+    const call = (url) => {
+        window.open(url)
     }
-
-    const append = (l, r) => {
-        return `${l}
-${r}`
-    }
-
-    const onCheck = () => {
-        /** @type {HTMLTextAreaElement} */
-        const t = document.getElementById("id_result")
-
-        console.log(window.navigator.onLine);
-        t.value = append(t.value, `window.navigator.onLine = ${window.navigator.onLine}`)
-    }
-
-    onCheck()
 </script>
 
 </html>
