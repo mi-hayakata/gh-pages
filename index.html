@@ -5,13 +5,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TS3明細</title>
-    <style>
-        .link {
-            color: -webkit-link;
-            cursor: pointer;
-            text-decoration: underline;
-        }
-    </style>
 </head>
 
 <body>
@@ -23,16 +16,14 @@
     </div>
     <div>
         <h2>テスト2</h2>
-        <a class="link" onclick="call('https://www.google.com')">
+        <a href="javascript:window.open('https://www.google.com')">
             Google
         </a>
     </div>
 </body>
 
 <script>
-    const call = (url) => {
-        window.open(url)
-    }
+    // NOP
 </script>
 
 </html>
