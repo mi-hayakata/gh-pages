@@ -9,40 +9,62 @@
 
 <body>
     <h3>WebViewからネイティブブラウザを起動 動作確認用</h3>
-    <div>
-        <h4>テスト1</h4>
-        <a href="https://www.yahoo.co.jp/" target="_blank" rel="noopener noreferrer">
-            Yahoo!
-        </a>
-    </div>
-    <div>
-        <h4>テスト2</h4>
-        <a href="javascript:window.open('https://www.google.com')">
-            Google
-        </a>
-    </div>
-    <div>
-        <h4>テスト Android Native連携</h4>
-        <a href="javascript:wvt.callBrowser('https://example.com/')">
-            example.com
-        </a>
-    </div>
+    <h4>テスト1</h4>
+    <a href="https://www.yahoo.co.jp/" target="_blank" rel="noopener noreferrer">
+        Yahoo!
+    </a>
+    <h4>テスト2</h4>
+    <a href="javascript:window.open('https://www.google.com')">
+        Google
+    </a>
+    <h4>テスト Android Native連携</h4>
+    <a href="javascript:wvt.callBrowser('https://example.com/')">
+        example.com
+    </a>
 
     <hr>
 
     <h3>タイトルの動的変更 動作確認用</h3>
     <div>
-        <div>
-            <button onclick="changeTitle()">タイトルを現在時間に変更する</button>
-        </div>
+        <button onclick="changeTitle()">タイトルを現在時間に変更する</button>
     </div>
 
+    <hr>
+
+    <h3>スクロール 動作確認用</h3>
+    (下の方にボタンがあります)
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <button onclick="scrollToTop()">Scroll to top</button>
 </body>
 
 <script>
     const changeTitle = () => {
         const d = new Date()
         document.title = d.toLocaleTimeString() + "." + d.getMilliseconds()
+    }
+
+    const scrollToTop = () => {
+        window.scrollTo(0, 0)
     }
 </script>
 
