@@ -18,7 +18,11 @@
         Google
     </a>
     <h4>テスト Android Native連携</h4>
-    <a href="javascript:wvt.callBrowser('https://example.com/')">
+    <a href="javascript:window.android.openBrowser('https://example.com/')">
+        example.com
+    </a>
+    <h4>テスト iOS Native連携</h4>
+    <a href="javascript:openBrowser()">
         example.com
     </a>
 
@@ -58,6 +62,13 @@
 </body>
 
 <script>
+    const openBrowser = () => {
+        window.webkit.messageHandlers.openBrowser.postMessage({
+            callID: (Math.random() * 10000000000000000).toString(), // e.g. 5267405518055965
+            url: "https://example.com/",
+        })
+    }
+
     const changeTitle = () => {
         const d = new Date()
         document.title = d.toLocaleTimeString() + "." + d.getMilliseconds()
