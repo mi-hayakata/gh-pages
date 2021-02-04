@@ -22,7 +22,7 @@
         example.com
     </a>
     <h4>テスト iOS Native連携</h4>
-    <a href="javascript:openBrowser()">
+    <a href="javascript:openBrowserIOS()">
         example.com
     </a>
 
@@ -62,7 +62,7 @@
 </body>
 
 <script>
-    const openBrowser = () => {
+    const openBrowserIOS = () => {
         window.webkit.messageHandlers.openBrowser.postMessage({
             callID: (Math.random() * 10000000000000000).toString(), // e.g. 5267405518055965
             url: "https://example.com/",
