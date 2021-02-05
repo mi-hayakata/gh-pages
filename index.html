@@ -9,6 +9,7 @@
         body {
             width: 800px;
         }
+
         h3 {
             color: orangered;
         }
@@ -75,10 +76,10 @@
     const scrollToMiddle_JS = () => window.scrollTo(200, 200)
     const scrollToTopAnime_JS = () => window.scrollTo({ top: 0, left: 0, behavior: "smooth" })
     const scrollToMiddleAnime_JS = () => window.scrollTo({ top: 200, left: 200, behavior: "smooth" })
-    const scrollToTop_A = () => window.android.scrollTo(0, 0)
-    const scrollToMiddle_A = () => window.android.scrollTo(200, 200)
-    const scrollToTopAnime_A = () => window.android.scrollTo({ top: 0, left: 0, behavior: "smooth" })
-    const scrollToMiddleAnime_A = () => window.android.scrollTo({ top: 200, left: 200, behavior: "smooth" })
+    const scrollToTop_A = () => window.android.scrollTo(0, 0, null)
+    const scrollToMiddle_A = () => window.android.scrollTo(200, 200, null)
+    const scrollToTopAnime_A = () => window.android.scrollTo(0, 0, "smooth")
+    const scrollToMiddleAnime_A = () => window.android.scrollTo(200, 200, "smooth")
 
 </script>
 
