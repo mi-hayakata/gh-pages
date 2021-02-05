@@ -5,6 +5,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TS3明細</title>
+    <style>
+        body {
+            width: 800px;
+        }
+        h3 {
+            color: orangered;
+        }
+    </style>
 </head>
 
 <body>
@@ -37,28 +45,17 @@
 
     <h3>スクロール 動作確認用</h3>
     (下の方にボタンがあります)
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <button onclick="scrollToTop()">Scroll to top</button>
+    <div style="height: 800px;"></div>
+    <h4>iOS用</h4>
+    <button onclick="scrollToTop_JS()">to Top</button><br><br>
+    <button onclick="scrollToMiddle_JS()">to Middle</button><br><br>
+    <button onclick="scrollToTopAnime_JS()">to Top with Animation</button><br><br>
+    <button onclick="scrollToMiddleAnime_JS()">to Middle with Animation</button>
+    <h4>Android用</h4>
+    <button onclick="scrollToTop_A()">to Top</button><br><br>
+    <button onclick="scrollToMiddle_A()">to Middle</button><br><br>
+    <button onclick="scrollToTopAnime_A()">to Top with Animation</button><br><br>
+    <button onclick="scrollToMiddleAnime_A()">to Middle with Animation</button>
 </body>
 
 <script>
@@ -74,9 +71,15 @@
         document.title = d.toLocaleTimeString() + "." + d.getMilliseconds()
     }
 
-    const scrollToTop = () => {
-        window.scrollTo(0, 0)
-    }
+    const scrollToTop_JS = () => window.scrollTo(0, 0)
+    const scrollToMiddle_JS = () => window.scrollTo(200, 200)
+    const scrollToTopAnime_JS = () => window.scrollTo({ top: 0, left: 0, behavior: "smooth" })
+    const scrollToMiddleAnime_JS = () => window.scrollTo({ top: 200, left: 200, behavior: "smooth" })
+    const scrollToTop_A = () => window.android.scrollTo(0, 0)
+    const scrollToMiddle_A = () => window.android.scrollTo(200, 200)
+    const scrollToTopAnime_A = () => window.android.scrollTo({ top: 0, left: 0, behavior: "smooth" })
+    const scrollToMiddleAnime_A = () => window.android.scrollTo({ top: 200, left: 200, behavior: "smooth" })
+
 </script>
 
 </html>
