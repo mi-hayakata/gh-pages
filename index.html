@@ -5,9 +5,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TS3明細</title>
+    <script src="src/smoothscroll.js"></script>
     <style>
         body {
             width: 800px;
+            padding: 32px;
+            margin: 0px;
+            border: red 2px solid;
         }
 
         h3 {
@@ -21,6 +25,12 @@
     <div>
         2021-02-05 16:24 (キャッシュ更新されたか判定に見てください)
     </div>
+
+    <hr>
+
+    <h3>スクロール 動作確認用</h3>
+    <button onclick="scrollToBottom()">1-1. 最下部へスクロール</button><br><br>
+    <button onclick="scrollToBottom_A()">1-2. 最下部へスクロール with Animation</button>
 
     <hr>
 
@@ -66,16 +76,8 @@
     <h3>スクロール 動作確認用</h3>
     (下の方にボタンがあります)
     <div style="height: 800px;"></div>
-    <h4>iOS用</h4>
-    <button onclick="scrollToTop_JS()">to Top</button><br><br>
-    <button onclick="scrollToMiddle_JS()">to Middle</button><br><br>
-    <button onclick="scrollToTopAnime_JS()">to Top with Animation</button><br><br>
-    <button onclick="scrollToMiddleAnime_JS()">to Middle with Animation</button>
-    <h4>Android用</h4>
-    <button onclick="scrollToTop_A()">to Top</button><br><br>
-    <button onclick="scrollToMiddle_A()">to Middle</button><br><br>
-    <button onclick="scrollToTopAnime_A()">to Top with Animation</button><br><br>
-    <button onclick="scrollToMiddleAnime_A()">to Middle with Animation</button>
+    <button onclick="scrollToTop()">2-1. 最上部へスクロール</button><br><br>
+    <button onclick="scrollToTop_A()">2-2. 最上部へスクロール with Animation</button>
 </body>
 
 <script>
@@ -91,15 +93,6 @@
         document.title = d.toLocaleTimeString() + "." + d.getMilliseconds()
     }
 
-    const scrollToTop_JS = () => window.scrollTo(0, 0)
-    const scrollToMiddle_JS = () => window.scrollTo(200, 200)
-    const scrollToTopAnime_JS = () => window.scrollTo({ top: 0, left: 0, behavior: "smooth" })
-    const scrollToMiddleAnime_JS = () => window.scrollTo({ top: 200, left: 200, behavior: "smooth" })
-    const scrollToTop_A = () => window.android.scrollTo(0, 0, null)
-    const scrollToMiddle_A = () => window.android.scrollTo(200, 200, null)
-    const scrollToTopAnime_A = () => window.android.scrollTo(0, 0, "smooth")
-    const scrollToMiddleAnime_A = () => window.android.scrollTo(200, 200, "smooth")
-
     const setShowBackButtonIOS = (isShow) => {
         window.webkit.messageHandlers.setShowBackButton.postMessage({
             callID: (Math.random() * 10000000000000000).toString(), // e.g. 5267405518055965
@@ -108,6 +101,34 @@
     }
     const setShowBackButtonAndroid = (isShow) => {
         window.android.setShowBackButton(isShow)
+    }
+
+    const scrollToBottom = () => {
+        document.querySelector("body").scrollIntoView({
+            block: "end",
+            inline: "start",
+        });
+    }
+    const scrollToBottom_A = () => {
+        document.querySelector("body").scrollIntoView({
+            block: "end",
+            inline: "start",
+            behavior: "smooth",
+        });
+    }
+
+    const scrollToTop = () => {
+        document.querySelector("body").scrollIntoView({
+            block: "start",
+            inline: "start",
+        });
+    }
+    const scrollToTop_A = () => {
+        document.querySelector("body").scrollIntoView({
+            block: "start",
+            inline: "start",
+            behavior: "smooth",
+        });
     }
 </script>
 
