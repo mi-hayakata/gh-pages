@@ -8,7 +8,7 @@
     <script src="src/smoothscroll.js"></script>
     <style>
         body {
-            padding: 32px;
+            padding: 16px;
             margin: 0px;
             border: red 2px solid;
         }
@@ -22,7 +22,19 @@
 <body>
     <h2>html最終更新日時</h2>
     <div>
-        2021-02-08 13:07 (キャッシュ更新されたか判定に見てください)
+        2021-02-08 16:27 (キャッシュ更新されたか判定に見てください)
+    </div>
+
+    <hr>
+
+    <h3>ヘッダーの戻るボタンの表示/非表示 動作確認用</h3>
+    <div>
+        <h4>iOS用</h4>
+        <button onclick="setShowBackButtonIOS(true)">表示</button><br><br>
+        <button onclick="setShowBackButtonIOS(false)">非表示</button><br><br>
+        <h4>Android用</h4>
+        <button onclick="setShowBackButtonAndroid(true)">表示</button><br><br>
+        <button onclick="setShowBackButtonAndroid(false)">非表示</button><br><br>
     </div>
 
     <hr>
@@ -56,18 +68,6 @@
     <h3>タイトルの動的変更 動作確認用</h3>
     <div>
         <button onclick="changeTitle()">タイトルを現在時間に変更する</button>
-    </div>
-
-    <hr>
-
-    <h3>ヘッダーの戻るボタンの表示/非表示 動作確認用</h3>
-    <div>
-        <h4>iOS用</h4>
-        <button onclick="setShowBackButtonIOS(true)">表示</button><br><br>
-        <button onclick="setShowBackButtonIOS(false)">非表示</button><br><br>
-        <h4>Android用</h4>
-        <button onclick="setShowBackButtonAndroid(true)">表示</button><br><br>
-        <button onclick="setShowBackButtonAndroid(false)">非表示</button><br><br>
     </div>
 
     <hr>
